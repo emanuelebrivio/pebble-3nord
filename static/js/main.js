@@ -9,7 +9,7 @@
   var pebbleSettings;
   if (window.location.hash) {
     var hash = window.location.hash.replace('#', '');
-    document.getElementById('message').textContent(hash);
+    document.getElementById('message').textContent = hash;
   }
     
       
