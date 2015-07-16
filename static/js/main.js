@@ -11,13 +11,11 @@
   var lastInput = document.querySelector('input[name="last"]');
   var awesompleteLast = new Awesomplete(lastInput);
   
-  /*
   if (window.location.hash) {
     var json = JSON.parse(decodeURIComponent(window.location.hash.replace('#', '')));
     firstInput.value = json.firstStationName;
     lastInput.value = json.lastStationName;
   }
-  */
   
   reqwest({
     url: 'https://raw.githubusercontent.com/sabas/trenitalia/master/stazioni_coord.geojson',
