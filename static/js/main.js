@@ -5,6 +5,13 @@
 
   'use strict';
   var stations;
+  
+  var pebbleSettings;
+  if (window.location.hash) {
+    var hash = window.location.hash.replace('#', '');
+    document.getElementById('message').textContent(hash);
+  }
+    
       
   var firstinput = document.querySelector('input[name="first"]');
   var awesompletefirst = new Awesomplete(firstinput);
