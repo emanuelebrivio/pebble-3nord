@@ -1,11 +1,11 @@
 /*jshint browser:true, indent:2, laxcomma:true, loopfunc: true, jquery: true */
 /*global $, console */
 
-$(function () {
+(function () {
 
   'use strict';
   
-  $('.retrieve-station').selectize({
+  /*$('.retrieve-station').selectize({
     valueField: 'url',
     labelField: 'name',
     searchField: 'name',
@@ -32,6 +32,16 @@ $(function () {
         }
       });
     }
+  });*/
+  
+  reqwest({
+      url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/autocompletaStazione/MILANO'
+    , method: 'get'
+    , crossOrigin: true
+    , error: function (err) { }
+    , success: function (resp) {
+        console.log(resp);
+      }
   });
 
-});
+})();
