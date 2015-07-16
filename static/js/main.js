@@ -1,15 +1,37 @@
-/*jshint browser:true, indent:2, laxcomma:true, loopfunc: true */
-/*global NodeList, HTMLCollection */
+/*jshint browser:true, indent:2, laxcomma:true, loopfunc: true, jquery: true */
+/*global $, console */
 
-(function () {
+$(function () {
 
   'use strict';
   
-  var options = { color: 'white', border: true };
-  
-  document.getElementById('save').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  $('.retrieve-station').selectize({
+    valueField: 'url',
+    labelField: 'name',
+    searchField: 'name',
+    create: false,
+    render: {
+      option: function (item, escape) {
+        return item;
+      }
+    },
+    load: function (query, callback) {
+      if (!query.length) {
+        return callback();
+      }
+      $.ajax({
+        url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/autocompletaStazione/' + encodeURIComponent(query),
+        type: 'GET',
+        crossDomain: true,
+        error: function () {
+          callback();
+        },
+        success: function (res) {
+          console.log(res);
+          callback(res);
+        }
+      });
+    }
   });
 
-})();
+});

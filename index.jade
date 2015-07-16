@@ -12,11 +12,13 @@ html
     
   body
     
-    pre.
-      var options = { color: 'white', border: true };
+    
+    input.retrieve-station(type='text', name='from')
     
     button#save
       span Save configuration file
     
-    script(src='//javaspritz.com/cdn/dom.polyfill.min.js')
+    
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
     script(src='static/js/main.js')
