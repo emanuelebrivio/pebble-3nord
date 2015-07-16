@@ -5,18 +5,17 @@
 
   'use strict';
   var stations;
-  
-  var pebbleSettings;
-  if (window.location.hash) {
-    var hash = window.location.hash.replace('#', '');
-    document.getElementById('message').textContent = hash;
-  }
     
-      
-  var firstinput = document.querySelector('input[name="first"]');
-  var awesompletefirst = new Awesomplete(firstinput);
-  var lastinput = document.querySelector('input[name="last"]');
-  var awesompletelast = new Awesomplete(lastinput);
+  var firstInput = document.querySelector('input[name="first"]');
+  var awesompleteFirst = new Awesomplete(firstInput);
+  var lastInput = document.querySelector('input[name="last"]');
+  var awesompleteLast = new Awesomplete(lastInput);
+  
+  if (window.location.hash) {
+    var json = JSON.parse(decodeURIComponent(window.location.hash.replace('#', '')));
+    firstInput.value = json.firstStationName;
+    lastInput.value = json.lastStationName;
+  }
   
   reqwest({
     url: 'https://raw.githubusercontent.com/sabas/trenitalia/master/stazioni_coord.geojson',
@@ -35,14 +34,14 @@
         };
       });
       
-      awesompletefirst.list = awesompletelast.list = _.pluck(stations, 'nome');
+      awesompleteFirst.list = awesompleteLast.list = _.pluck(stations, 'nome');
       
     }
   });
   
   document.getElementById('save').addEventListener('click', function () {
-    var first = _.find(stations, { nome: firstinput.value });
-    var last = _.find(stations, { nome: lastinput.value });
+    var first = _.find(stations, { nome: firstInput.value });
+    var last = _.find(stations, { nome: lastInput.value });
     
     document.getElementById('message').textContent = '';
     
