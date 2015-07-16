@@ -10,15 +10,23 @@ html
     link(rel='stylesheet', href='static/css/style.css')
     link(rel='shortcut icon', href='static/img/favicon.png', type='image/png')
     
+    
   body
     
     
-    input.retrieve-station(type='text', name='from')
+    input(type='text', name='first', placeholder='Da')
+    input(type='text', name='last', placeholder='A')
+    
+    div#message
     
     button#save
       span Save configuration file
     
     
     script(src='//cdnjs.cloudflare.com/ajax/libs/reqwest/1.1.6/reqwest.min.js')
-    //-script(src='//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/js/standalone/selectize.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js')
+    
+    link(rel='stylesheet', href='static/js/vendor/awesomplete.css')
+    script(src='static/js/vendor/awesomplete.min.js')
+    
     script(src='static/js/main.js')
