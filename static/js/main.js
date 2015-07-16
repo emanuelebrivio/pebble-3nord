@@ -9,7 +9,10 @@
   
   document.getElementById('save').addEventListener('click', function (e) {
     e.preventDefault();
-    document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+    
+    var returnto = window.location.href.split('return_to=')[1];
+    
+    document.location = returnto + '#' + encodeURIComponent(JSON.stringify(options));
   });
 
 })();
