@@ -10,9 +10,7 @@
   document.getElementById('save').addEventListener('click', function (e) {
     e.preventDefault();
     
-    var returnto = window.location.href.split('return_to=')[1];
-    
-    document.location = returnto + '#' + encodeURIComponent(JSON.stringify(options));
+    document.location = 'https://cloudpebble.net/ide/emulator/config@#' + encodeURIComponent(JSON.stringify(options));
   });
 
 })();
