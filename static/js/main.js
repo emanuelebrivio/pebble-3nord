@@ -39,7 +39,9 @@
     }
   });
   
-  document.getElementById('save').addEventListener('click', function () {
+  document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
     var first = _.find(stations, { nome: firstInput.value });
     var last = _.find(stations, { nome: lastInput.value });
     
@@ -60,6 +62,7 @@
     } else {
       // You mess with the wrong guy
       document.getElementById('message').textContent = 'Verificare la correttezza dei campi inseriti';
+      return false;
     }
     
   });

@@ -12,16 +12,25 @@ html
     
     
   body
+  
+    header
+      .padding.text-center
+        h1 3nord settings
     
-    
-    input(type='text', name='first', placeholder='Da')
-    input(type='text', name='last', placeholder='A')
+    .page
+      .padding
+        form.pure-form
+          p
+            label Partenza
+            input(type='text', name='first')
+          p
+            label Arrivo
+            input(type='text', name='last')
+
+          button.pure-button#save
+            span Save
     
     div#message
-    
-    button#save
-      span Save configuration file
-    
     
     script(src='//cdnjs.cloudflare.com/ajax/libs/reqwest/1.1.6/reqwest.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js')
