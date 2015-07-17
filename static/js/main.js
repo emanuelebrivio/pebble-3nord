@@ -64,11 +64,11 @@
       console.log(first);
       
       reqwest({
-        url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/dettaglioStazione/' + first.id,
+        //url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/dettaglioStazione/' + first.id + '/1',
+        url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/regione/' + first.id,
         type: 'text',
         method: 'get',
         crossOrigin: true,
-        error: function (err) { },
         success: function (resp) {
           console.log('RESPONSE', resp);
         }
