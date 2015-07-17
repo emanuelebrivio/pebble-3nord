@@ -62,6 +62,9 @@
     } else {
       // You mess with the wrong guy
       document.getElementById('message').textContent = 'Verificare la correttezza dei campi inseriti';
+      setTimeout(function () {
+        document.getElementById('message').textContent = '';
+      }, 3500);
       return false;
     }
     
