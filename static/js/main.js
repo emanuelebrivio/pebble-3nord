@@ -18,13 +18,23 @@
   }
   
   reqwest({
-    url: 'https://raw.githubusercontent.com/sabas/trenitalia/master/stazioni_coord.geojson',
-    type: 'json',
+    url: 'https://raw.githubusercontent.com/sabas/trenitalia/master/stazioni.tsv',
+    type: 'text',
     method: 'get',
     crossOrigin: true,
     error: function (err) { },
     success: function (resp) {
       
+      stations = resp.response.split('\n');
+      stations = _.map(stations, function (s) {
+        return {
+          nome: s.split('\t')[0],
+          id: s.split('\t')[1]
+        };
+      });
+      console.log(stations);
+      
+      /*
       stations = _.map(resp.features, function (s) {
         return {
           nome: s.properties.name,
@@ -33,6 +43,7 @@
           coords: s.geometry.coordinates,
         };
       });
+      */
       
       awesompleteFirst.list = awesompleteLast.list = _.pluck(stations, 'nome');
       
@@ -42,13 +53,28 @@
   document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
     
-    var first = _.find(stations, { nome: firstInput.value });
-    var last = _.find(stations, { nome: lastInput.value });
+    var first = _.filter(stations, { 'nome': firstInput.value })[0];
+    var last = _.filter(stations, { 'nome': lastInput.value })[0];
     
     document.getElementById('message').textContent = '';
     
     if (first && last) {
       // Everything is ok!
+      
+      console.log(first);
+      
+      reqwest({
+        url: 'http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/dettaglioStazione/' + first.id,
+        type: 'text',
+        method: 'get',
+        crossOrigin: true,
+        error: function (err) { },
+        success: function (resp) {
+          console.log('RESPONSE', resp);
+        }
+      });
+      
+      // http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/dettaglioStazione/S09218/0
       
       var options = {
         firstStationName: first.nome,
